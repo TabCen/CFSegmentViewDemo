@@ -1,0 +1,17 @@
+//
+//  PrefixHeader.pch
+//  CFSegmentViewDemo
+//
+//  Created by  chenfei on 2016/11/8.
+//  Copyright © 2016年 chenfei. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define ScreenFullHeight [[UIScreen mainScreen] bounds].size.height  //屏幕高度
+#define ScreenFullWidth [[UIScreen mainScreen] bounds].size.width     //屏幕宽度
+
+#import "MJRefresh.h"
+
+#endif /* PrefixHeader_pch */

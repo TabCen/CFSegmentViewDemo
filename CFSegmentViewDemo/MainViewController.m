@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "NormalViewController.h"
+#import "WithRefreshViewController.h"
 
 static NSString *const ID_TableViewCell=@"ID_TableViewCell";
 
@@ -56,8 +57,22 @@ static NSString *const ID_TableViewCell=@"ID_TableViewCell";
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NormalViewController *detailViewController = [[NormalViewController alloc] init];
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    switch (indexPath.row) {
+        case 0:{
+            NormalViewController *detailViewController = [[NormalViewController alloc] init];
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }break;
+        case 1:{
+            WithRefreshViewController *withRefreshVC=[[WithRefreshViewController alloc]init];
+            [self.navigationController pushViewController:withRefreshVC animated:YES];
+        }break;
+        case 2:{
+        
+        
+        }break;
+        default:
+            break;
+    }
 }
 
 

@@ -8,14 +8,13 @@
 
 #import "NormalViewController.h"
 
+#import "UIViewController+BaseExtension.h"
+
 #import "CFSegumentView.h"
 
 #import "ViewController_Son1.h"
 #import "ViewController_Son2.h"
 #import "ViewController_Son3.h"
-
-#define ScreenFullHeight [[UIScreen mainScreen] bounds].size.height  //屏幕高度
-#define ScreenFullWidth [[UIScreen mainScreen] bounds].size.width     //屏幕宽度
 
 @interface NormalViewController ()
 
@@ -27,7 +26,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
+    
+    [self setNavBar];
     
     self.segmentView = [[CFSegumentView alloc]initWithFrame:CGRectMake(0, 64, ScreenFullWidth, ScreenFullHeight-64)];
 //    self.segmentView.selfViewController=self;

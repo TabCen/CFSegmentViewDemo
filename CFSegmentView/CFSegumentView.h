@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)CFSegumentView:(CFSegumentView *)segumetView currentIndex:(NSString *)currentIndex;
 
+-(void)CFSegumentView:(CFSegumentView *)segumetView currentViewController:(UITableViewController *)tableVC;
+
 @end
 
 

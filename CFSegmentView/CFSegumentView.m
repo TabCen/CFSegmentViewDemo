@@ -363,44 +363,24 @@ NS_ASSUME_NONNULL_END
     //最后将当前视图添加到cell的contentView中
     [cell.contentView addSubview:_currentView];
     
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     //每次刷新TableView的方法
     if (self.scrollThenRefreshing&&self.tableView) {
         [self tableViewRefresh];
     }
-    
+ 
     if (self.delegate&&[self.delegate respondsToSelector:@selector(CFSegumentView:currentIndex:)]) {
         [self.delegate performSelector:@selector(CFSegumentView:currentIndex:) withObject:self withObject:[NSString stringWithFormat:@"%ld",(long)self.currentIndex]];
     }
     
-    return cell;
 }
 
+
+
 #pragma mark - set、get方法
-
-//-(UIView *)currentView{
-//    
-//    NSString *indeStr=[NSString stringWithFormat:@"%ld",self.currentIndex];
-//    _currentView=((UIViewController *)[self.dictTableViews objectForKey:indeStr]).view;
-//    
-//    return _currentView;
-//}
-
-//-(void)setCurrentIndex:(NSInteger)currentIndex{
-//    _currentIndex=currentIndex;
-//    
-//    UIButton *clickedButton=(UIButton*)[self viewWithTag:(200+_currentIndex)];
-//    
-//    [clickedButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-////    [self tittleButtonSellect:clickedButton];
-//}
-
-//-(void)setFirstIndex:(NSInteger)firstIndex{
-//    _firstIndex=firstIndex;
-//    UIButton *clickedButton=(UIButton*)[self viewWithTag:(200+_firstIndex)];
-//    [clickedButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-//    [self tittleButtonSellect:clickedButton];
-//    _contentCollectionView.contentOffset=CGPointMake(firstIndex*_kWidth, 0);
-//}
 
 -(UIViewController *)currentViewController{
     NSString *indeStr=[NSString stringWithFormat:@"%ld",self.currentIndex];
@@ -480,8 +460,11 @@ NS_ASSUME_NONNULL_END
 
 #pragma mark - 刷新方法
 -(void)tableViewRefresh{
-    
-    
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(CFSegumentView:currentViewController:)]&&self.tableView) {
+        
+        
+        [self.delegate performSelector:@selector(CFSegumentView:currentViewController:) withObject:self.currentViewController];
+    }
 }
 
 @end
