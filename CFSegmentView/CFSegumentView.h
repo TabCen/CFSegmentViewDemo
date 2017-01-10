@@ -19,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @class CFSegumentView;
 
 @protocol CFSegumentViewDelegate <NSObject>
-
--(void)CFSegumentView:(CFSegumentView *)segumetView currentIndex:(NSString *)currentIndex;
-
+//当滑动后都会调用
+//-(void)CFSegumentView:(CFSegumentView *)segumetView currentIndex:(NSString *)currentIndex;
+//当滑动到TableView时调用
 -(void)CFSegumentView:(CFSegumentView *)segumetView curTableVC_willDisplay:(UITableViewController *)tableVC;
-
+//当滑动到普通控制器时调用
 -(void)CFSegumentView:(CFSegumentView *)segumetView curVC_willDisplay:(UIViewController *)vc;
 
 @end

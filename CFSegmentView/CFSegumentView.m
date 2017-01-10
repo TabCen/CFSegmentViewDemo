@@ -102,9 +102,7 @@ NS_ASSUME_NONNULL_END
 }
 
 -(void)layoutSubviews{
-    [super layoutSubviews];
-    
-    if (_showTittle) {
+    if (self.showTittle) {
         self.tittleScrollView.frame=CGRectMake(0, 0, self.frame.size.width, self.tittleViewHeight);
         CGFloat tmpHeight=self.tittleViewHeight;
         self.fl.itemSize=CGSizeMake(_kWidth, _kHeight-tmpHeight);
@@ -112,6 +110,7 @@ NS_ASSUME_NONNULL_END
     }else{
         self.contentCollectionView.frame=CGRectMake(0, 0, _kWidth, _kHeight);
     }
+    [super layoutSubviews];
 }
 
 #pragma mark - 添加子视图
@@ -446,8 +445,14 @@ NS_ASSUME_NONNULL_END
     return _dictTableViews;
 }
 
--(BOOL)showTittle{
-    return _showTittle;
+-(void)setShowTittle:(BOOL)showTittle{
+    _showTittle = showTittle;
+    
+    self.fl.itemSize = CGSizeMake(_kWidth, _kHeight-self.collection_Y);
+    
+    self.contentCollectionView.frame = CGRectMake(0, _collection_Y, _kWidth, _kHeight-self.collection_Y);
+
+    
 }
 
 -(CGFloat)tittleViewHeight{
