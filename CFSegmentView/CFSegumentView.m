@@ -8,6 +8,8 @@
 
 #import "CFSegumentView.h"
 
+//#import "MJRefresh.h"
+
 #define CF_COLOR(R,G,B)  [UIColor colorWithRed:R green:G blue:B alpha:1]
 #define CF_COLOR_RGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -28,13 +30,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSMutableDictionary *dictTableViews;
 
 @property(nonatomic,strong)UIScrollView     *tittleScrollView;
-@property(nonatomic,strong)UIView           *tittleView;
+
 @property(nonatomic,strong)UICollectionView *contentCollectionView;
 
 @property(nonatomic,assign)CGFloat          kWidth;
 @property(nonatomic,assign)CGFloat          kHeight;
 
 @property(nonatomic,assign)CGFloat          collection_Y;
+
+@property(nonatomic)NSInteger                       lastSelectedTittleButtonTag;
 /**
  *  当前页
  */
@@ -46,7 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIView           *tittleScrollIndicatorView;     //  tittleView的指示标志
 @property(nonatomic,strong)UICollectionViewFlowLayout *fl;
 
-@property(nonatomic,assign)NSInteger                     lastSelectedTittleButtonTag;
 
 @end
 NS_ASSUME_NONNULL_END
@@ -113,8 +116,10 @@ NS_ASSUME_NONNULL_END
 
 #pragma mark - 添加子视图
 -(void)addTittleView{
-    //如果_showtittle设置为NO则直接跳出，不设置
+    //如果_showtittle设置为NO时
     if (!_showTittle) {
+        [self setupTittleViewNeedshow:NO];
+        
         return;
     }
     
@@ -156,11 +161,29 @@ NS_ASSUME_NONNULL_END
         
         return;
     }
-       //将tittleNum小于等于的滚动情况------暂时
-    self.tittleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.tittleViewHeight)];
+
+    ///正常情况设置头视图
+    [self setupTittleViewNeedshow:YES];
+    
+    [self addSubview:_tittleView];
+    
+}
+
+
+/**
+ 设置tittlView的具体方式
+ */
+-(void)setupTittleViewNeedshow:(BOOL)show{
+    
+    CGFloat tittleWidth = show?_kWidth:_kWidth-150;
+    
+    CGFloat tittleHeight = show?self.tittleViewHeight:44;
+    
+    //将tittleNum小于等于的滚动情况------暂时
+    self.tittleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, tittleWidth, tittleHeight)];
     
     for (int i=0; i<self.tittlesNum; ++i) {
-        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(i*_kWidth/_tittlesNum, 0, _kWidth/_tittlesNum, _tittleViewHeight)];
+        UIButton *button=[[UIButton alloc]initWithFrame:CGRectMake(i*tittleWidth/_tittlesNum, 0, tittleWidth/_tittlesNum, tittleHeight)];
         [button setBackgroundColor:kColor_Tittle_Bar];
         [button setTitle:_tittles[i] forState:UIControlStateNormal];
         [button setTitleColor:kColor_Tittle forState:UIControlStateNormal];
@@ -181,28 +204,27 @@ NS_ASSUME_NONNULL_END
         [_tittleView addSubview:button];
     }
     
-    UIView *buttonLine=[[UIView alloc]initWithFrame:CGRectMake(0, _tittleView.frame.size.height-0.5, _kWidth, 0.5)];
+    UIView *buttonLine=[[UIView alloc]initWithFrame:CGRectMake(0, _tittleView.frame.size.height-0.5, tittleWidth, 0.5)];
     
     buttonLine.backgroundColor=CF_COLOR_RGB(0xDDDDDD);
-//    buttonLine.backgroundColor=[UIColor blueColor];
+    //    buttonLine.backgroundColor=[UIColor blueColor];
     [_tittleView addSubview:buttonLine];
     
     [_tittleView bringSubviewToFront:buttonLine];
     
     if (self.showTittleScrollIndicator) {
         
-        self.tittleScrollIndicatorView=[[UIView alloc]initWithFrame:CGRectMake(0, _tittleView.frame.size.height-2, _kWidth/_tittlesNum, 2)];
+        self.tittleScrollIndicatorView=[[UIView alloc]initWithFrame:CGRectMake(0, _tittleView.frame.size.height-2, tittleWidth/_tittlesNum, 2)];
         
         _tittleScrollIndicatorView.backgroundColor=[UIColor redColor];
         
         [_tittleView addSubview:_tittleScrollIndicatorView];
         
         [_tittleView bringSubviewToFront:_tittleScrollIndicatorView];
-        
     }
-    
-    [self addSubview:_tittleView];
+
 }
+
 
 -(void)addContentCollectionView{
     self.fl=[[UICollectionViewFlowLayout alloc]init];
@@ -214,9 +236,9 @@ NS_ASSUME_NONNULL_END
     
     //当tittleView不显示的时候
     
-    _fl.itemSize=CGSizeMake(_kWidth, _kHeight-_collection_Y);
+    _fl.itemSize=CGSizeMake(_kWidth, _kHeight-self.collection_Y);
     
-    self.contentCollectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, _collection_Y, _kWidth, _kHeight-_collection_Y) collectionViewLayout:_fl];
+    self.contentCollectionView=[[UICollectionView alloc]initWithFrame:CGRectMake(0, _collection_Y, _kWidth, _kHeight-self.collection_Y) collectionViewLayout:_fl];
     [_contentCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:ID];
     
     _contentCollectionView.backgroundColor=[UIColor whiteColor];
@@ -225,8 +247,9 @@ NS_ASSUME_NONNULL_END
     _contentCollectionView.dataSource=self;
     _contentCollectionView.showsHorizontalScrollIndicator=NO;
     _contentCollectionView.bounces=NO;
-    [self addSubview:_contentCollectionView];
+    _contentCollectionView.prefetchingEnabled = NO;
     
+    [self addSubview:_contentCollectionView];
 }
 
 
@@ -257,14 +280,6 @@ NS_ASSUME_NONNULL_END
 -(void)tittleButtonOnClicked:(NSInteger)tag{
     
     self.currentIndex=tag-200;
-    //这个地方要自己定义，否则会出错
-    if (!_showTittle) {
-        if (tag!=_lastSelectedTittleButtonTag) {
-            [self buttonStatusChange:tag];
-        }
-        return;
-    }
-    
     if (tag!=_lastSelectedTittleButtonTag) {
         [self buttonStatusChange:tag];
     }
@@ -272,10 +287,10 @@ NS_ASSUME_NONNULL_END
 
 //按钮状态修改
 -(void)buttonStatusChange:(NSInteger)tag{
-    UIButton *laseButton=(UIButton*)[self viewWithTag:_lastSelectedTittleButtonTag];
+    UIButton *laseButton=(UIButton*)[self.tittleView viewWithTag:_lastSelectedTittleButtonTag];
     laseButton.selected=NO;
     laseButton.titleLabel.font=[UIFont systemFontOfSize:15];
-    UIButton *button=(UIButton*)[self viewWithTag:tag];
+    UIButton *button=(UIButton*)[self.tittleView viewWithTag:tag];
     button.selected=YES;
     if (self.tittleBig) {
         button.titleLabel.font=[UIFont systemFontOfSize:17];
@@ -287,19 +302,15 @@ NS_ASSUME_NONNULL_END
 #pragma mark - ScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat tittleWidth = _showTittle?_kWidth:_kWidth-150;
     
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
         if (_showTittleScrollIndicator) {
-            CGFloat offset=1.0f*scrollView.contentOffset.x/_tittlesNum;
+            
+            CGFloat offset=(tittleWidth/_kWidth)*scrollView.contentOffset.x/_tittlesNum;
             CGPoint oldPoint=self.tittleScrollIndicatorView.layer.position;
+            
             self.tittleScrollIndicatorView.layer.position=CGPointMake(_tittleScrollIndicatorView.frame.size.width/2.0f+offset, oldPoint.y);
-        }
-        
-        if (!_showTittle) {
-            UIView *lineButton=[self.selfViewController.navigationController.navigationBar viewWithTag:1000];
-            CGFloat offset=(1.0f*scrollView.contentOffset.x)/_tableClasses.count;
-            CGPoint oldPoint=lineButton.layer.position;
-            lineButton.layer.position=CGPointMake(lineButton.frame.size.width/2.0f+offset, oldPoint.y);
         }
     }
     
@@ -321,18 +332,17 @@ NS_ASSUME_NONNULL_END
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    
+    NSLog(@"cellforitem");
     /**
      *  将所有复用视图的子视图删除
      */
     if (0!=cell.contentView.subviews.count) {
-        for(UIView *view in cell.contentView.subviews){
-            [view removeFromSuperview];
-        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
+    self.currentIndex = indexPath.row;
     
     NSString *indexStr=[NSString stringWithFormat:@"%ld",(long)indexPath.item];
-
+    
     if ([_dictTableViews objectForKey:indexStr]) {
         if ([[_tableClasses[indexPath.item] class] isSubclassOfClass:[UITableViewController class]]) {
             UIView *tableView=((UITableViewController*)[_dictTableViews objectForKey:indexStr]).view;
@@ -347,14 +357,14 @@ NS_ASSUME_NONNULL_END
         if ([[_tableClasses[indexPath.item] class] isSubclassOfClass:[UITableViewController class]]) {
             UITableViewController *tempTableViewVC=_tableClasses[indexPath.item].new;
             //当tittleView不显示的时候
-            tempTableViewVC.view.frame=CGRectMake(0, 0, _kWidth, _kHeight-_collection_Y);
+            tempTableViewVC.view.frame=CGRectMake(0, 0, _kWidth, _kHeight-self.collection_Y);
             [self.dictTableViews setObject:tempTableViewVC forKey:indexStr];
             self.tableView=tempTableViewVC.tableView;
             self.currentView=_tableView;
         }else if ([[_tableClasses[indexPath.item] class] isSubclassOfClass:[UIViewController class]]){
             UIViewController *tempVC=_tableClasses[indexPath.item].new;
             //当tittleView不显示的时候
-            tempVC.view.frame=CGRectMake(0, 0, _kWidth, _kHeight-_collection_Y);
+            tempVC.view.frame=CGRectMake(0, 0, _kWidth, _kHeight-self.collection_Y);
             [self.dictTableViews setObject:tempVC forKey:indexStr];
             self.tableView=nil;
             self.currentView=tempVC.view;
@@ -367,18 +377,12 @@ NS_ASSUME_NONNULL_END
 }
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    //每次刷新TableView的方法
-    if (self.scrollThenRefreshing&&self.tableView) {
-        [self tableViewRefresh];
-    }
- 
-    if (self.delegate&&[self.delegate respondsToSelector:@selector(CFSegumentView:currentIndex:)]) {
-        [self.delegate performSelector:@selector(CFSegumentView:currentIndex:) withObject:self withObject:[NSString stringWithFormat:@"%ld",(long)self.currentIndex]];
-    }
-    
+//    NSLog(@"willdisplay");
+    //先去做代理方法
+    [self execDelegateFunction];
+    //在执行特殊任务，比如设置了当滚动时刷新，并且是tableView则执行刷新操作
+    [self scrollThenTableViewRefresh];
 }
-
-
 
 #pragma mark - set、get方法
 
@@ -418,7 +422,6 @@ NS_ASSUME_NONNULL_END
 -(NSMutableArray<UITableView *> *)tableViews{
     if (!_tableViews) {
         //当tittleView不显示的时候
-        
         UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, _collection_Y, self.frame.size.width, self.frame.size.height-_collection_Y)];
         
         tableView.backgroundColor=[UIColor whiteColor];
@@ -458,13 +461,64 @@ NS_ASSUME_NONNULL_END
     return self.showTittle?self.tittleViewHeight:0;
 }
 
+
+/**
+ 获取rootViewController
+
+ @return 根控制器
+ */
+-(UIViewController *)rootViewController{
+    UIResponder *next = self.nextResponder;
+    while (next != nil) {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            
+            return (UIViewController *) next;
+        }
+        next = next.nextResponder;
+    }
+    return nil;
+}
+
 #pragma mark - 刷新方法
--(void)tableViewRefresh{
-    if (self.delegate&&[self.delegate respondsToSelector:@selector(CFSegumentView:currentViewController:)]&&self.tableView) {
-        
-        
-        [self.delegate performSelector:@selector(CFSegumentView:currentViewController:) withObject:self.currentViewController];
+-(void)scrollThenTableViewRefresh{
+    if (self.scrollThenRefreshing&&self.tableView) {
+        if ([self.tableView.mj_header isRefreshing]) {
+            [self.tableView.mj_header endRefreshing];
+        }
+        [self tableViewRefresh];
     }
 }
+
+-(void)tableViewRefresh{
+    
+    [self.tableView.mj_header beginRefreshing];
+}
+
+//执行代理方法，其中包含
+-(void)execDelegateFunction{
+    //如果是tableView的话就
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(CFSegumentView:curTableVC_willDisplay:)]&&self.tableView) {
+        [self.delegate performSelector:@selector(CFSegumentView:curTableVC_willDisplay:) withObject:self.currentViewController];
+    }
+    
+    //如果是viewController的时候调用这个
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(CFSegumentView:curVC_willDisplay:)]) {
+        [self.delegate performSelector:@selector(CFSegumentView:curVC_willDisplay:) withObject:self.currentViewController];
+    }
+}
+
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *hitTestView = [super hitTest:point withEvent:event];
+    if (self.tableView) {
+        if (self.tableView.contentOffset.y<=0) {
+            return _tableView.superview;
+        }else{
+            return _tableView;
+        }
+    }
+    else
+        return hitTestView;
+}
+
 
 @end

@@ -1,30 +1,29 @@
 //
-//  ViewController_Son2.m
+//  ViewController_GrandSon1.m
 //  CFSegmentViewDemo
 //
-//  Created by  chenfei on 2016/11/7.
+//  Created by  chenfei on 2016/12/26.
 //  Copyright © 2016年 chenfei. All rights reserved.
 //
 
-#import "ViewController_Son2.h"
+#import "ViewController_GrandSon1.h"
 
-@interface ViewController_Son2 ()
+#import "UIViewController+BaseExtension.h"
+
+@interface ViewController_GrandSon1 ()
 
 @end
 
-@implementation ViewController_Son2
-
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    NSLog(@"页面即将呈现2");
-    
-}
+@implementation ViewController_GrandSon1
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor blueColor];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
+    [self setNavBar];
+    
+    self.navigationItem.title = @"孙控制器";
+    
+    self.view.backgroundColor = [UIColor blueColor];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,80 +1,55 @@
 //
-//  ViewController_Son3.m
+//  ViewController_Son5.m
 //  CFSegmentViewDemo
 //
-//  Created by  chenfei on 2016/11/7.
+//  Created by  chenfei on 2016/12/28.
 //  Copyright © 2016年 chenfei. All rights reserved.
 //
 
-#import "ViewController_Son3.h"
+#import "ViewController_Son5.h"
 
-static NSString *const Identify_id =@"IDentify";
-
-@interface ViewController_Son3 ()
+@interface ViewController_Son5 ()
 
 @end
 
-@implementation ViewController_Son3
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    NSLog(@"页面即将呈现");
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-}
+@implementation ViewController_Son5
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.refreshControl=[[UIRefreshControl alloc]init];
-//    self.refreshControl.attributedTitle=[[NSAttributedString alloc]initWithString:@"松开后刷新~"];
-//    [self.refreshControl addTarget:self action:@selector(refreshStatusChanged:) forControlEvents:UIControlEventValueChanged];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identify_id];
-    
-    MJRefreshNormalHeader *mjheader=[MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshStatusChanged:)];
-    
-    self.tableView.mj_header=mjheader;
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    
-}
-
--(void)refreshStatusChanged:(id)sender{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"刷新结束");
-        [self.tableView.mj_header endRefreshing];
-    });
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 40;
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
 
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_id forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    // Configure the cell...
     
     return cell;
 }
-
-
-
+*/
 
 /*
 // Override to support conditional editing of the table view.

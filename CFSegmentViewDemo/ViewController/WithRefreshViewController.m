@@ -28,12 +28,15 @@
     [self setNavBar];
     
     [self setReFreshBtn];
-    //
+    
     self.segument=[[CFSegumentView alloc]initWithFrame:CGRectMake(0, 64, ScreenFullWidth, ScreenFullHeight-64)];
     
+//    _segument.showTittle = NO;
     _segument.tittles=@[@"第一",@"第二",@"第三"];
     
     _segument.tableClasses=@[[ViewController_Son3 class],[ViewController_Son2 class],[ViewController_Son3 class]];
+    
+    _segument.scrollThenRefreshing = YES;
     
     _segument.delegate=self;
     
@@ -41,6 +44,11 @@
 }
 
 -(void)tableRefresh{
+//    if ([self.segument.currentView isKindOfClass:[UITableView class]]) {
+//        UITableView *tableView = (UITableView *)self.segument.currentView;
+//        
+//        [tableView.mj_header beginRefreshing];
+//    }
     [self.segument tableViewRefresh];
 }
 
@@ -55,11 +63,13 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)CFSegumentView:(CFSegumentView *)segumetView currentViewController:(UITableViewController *)tableVC{
 
-    ViewController_Son3 *tabVC=(ViewController_Son3 *)tableVC;
 
-    [tabVC.tableView.mj_header beginRefreshing];
+#pragma mark - CFSegumentView代理方法
+
+-(void)CFSegumentView:(CFSegumentView *)segumetView curTableVC_willDisplay:(UITableViewController *)tableVC{
+//    ViewController_Son3 *tabVC=(ViewController_Son3 *)tableVC;
+//    [tabVC.tableView.mj_header beginRefreshing];
     
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F2073881E13F36700DA0ECB /* ViewController_Son5.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2073871E13F36700DA0ECB /* ViewController_Son5.m */; };
+		9F476EA21E0D0979002125E1 /* TittleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F476EA11E0D0979002125E1 /* TittleViewController.m */; };
 		9F7DBD5A1DD05DDD00A510B8 /* CFSegumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DBD551DD05DDD00A510B8 /* CFSegumentView.m */; };
 		9F7DBD601DD0647700A510B8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7DBD5E1DD0647700A510B8 /* MainViewController.m */; };
 		9F7DBD611DD0647700A510B8 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7DBD5F1DD0647700A510B8 /* MainViewController.xib */; };
@@ -41,9 +43,18 @@
 		9FB7EC0C1DD1C31C00B6AACD /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB7EBF71DD1C31C00B6AACD /* UIScrollView+MJExtension.m */; };
 		9FB7EC0D1DD1C31C00B6AACD /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB7EBF91DD1C31C00B6AACD /* UIScrollView+MJRefresh.m */; };
 		9FB7EC0E1DD1C31C00B6AACD /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB7EBFB1DD1C31C00B6AACD /* UIView+MJExtension.m */; };
+		9FC482DD1E109DF700979AB4 /* ViewController_GrandSon1.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC482DB1E109DF700979AB4 /* ViewController_GrandSon1.m */; };
+		9FC482DE1E109DF700979AB4 /* ViewController_GrandSon1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC482DC1E109DF700979AB4 /* ViewController_GrandSon1.xib */; };
+		9FC482E41E10B71100979AB4 /* ViewController_Son4.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC482E31E10B71100979AB4 /* ViewController_Son4.m */; };
+		9FC482E71E10B79000979AB4 /* InScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC482E61E10B79000979AB4 /* InScrollViewViewController.m */; };
+		9FC482F31E1107D300979AB4 /* BaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC482F21E1107D300979AB4 /* BaseScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F2073861E13F36700DA0ECB /* ViewController_Son5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController_Son5.h; path = Sons/ViewController_Son5.h; sourceTree = "<group>"; };
+		9F2073871E13F36700DA0ECB /* ViewController_Son5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController_Son5.m; path = Sons/ViewController_Son5.m; sourceTree = "<group>"; };
+		9F476EA01E0D0979002125E1 /* TittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TittleViewController.h; sourceTree = "<group>"; };
+		9F476EA11E0D0979002125E1 /* TittleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TittleViewController.m; sourceTree = "<group>"; };
 		9F7DBD541DD05DDD00A510B8 /* CFSegumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFSegumentView.h; sourceTree = "<group>"; };
 		9F7DBD551DD05DDD00A510B8 /* CFSegumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFSegumentView.m; sourceTree = "<group>"; };
 		9F7DBD5D1DD0647600A510B8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -109,6 +120,15 @@
 		9FB7EBF91DD1C31C00B6AACD /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		9FB7EBFA1DD1C31C00B6AACD /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		9FB7EBFB1DD1C31C00B6AACD /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		9FC482DA1E109DF700979AB4 /* ViewController_GrandSon1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController_GrandSon1.h; path = Sons/ViewController_GrandSon1.h; sourceTree = "<group>"; };
+		9FC482DB1E109DF700979AB4 /* ViewController_GrandSon1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController_GrandSon1.m; path = Sons/ViewController_GrandSon1.m; sourceTree = "<group>"; };
+		9FC482DC1E109DF700979AB4 /* ViewController_GrandSon1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController_GrandSon1.xib; path = Sons/ViewController_GrandSon1.xib; sourceTree = "<group>"; };
+		9FC482E21E10B71100979AB4 /* ViewController_Son4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController_Son4.h; path = Sons/ViewController_Son4.h; sourceTree = "<group>"; };
+		9FC482E31E10B71100979AB4 /* ViewController_Son4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController_Son4.m; path = Sons/ViewController_Son4.m; sourceTree = "<group>"; };
+		9FC482E51E10B79000979AB4 /* InScrollViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InScrollViewViewController.h; path = ViewController/InScrollViewViewController.h; sourceTree = "<group>"; };
+		9FC482E61E10B79000979AB4 /* InScrollViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InScrollViewViewController.m; path = ViewController/InScrollViewViewController.m; sourceTree = "<group>"; };
+		9FC482F11E1107D300979AB4 /* BaseScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScrollView.h; sourceTree = "<group>"; };
+		9FC482F21E1107D300979AB4 /* BaseScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +159,10 @@
 				9F7DBD641DD0668F00A510B8 /* NormalViewController.xib */,
 				9FB7EB9E1DD186C800B6AACD /* WithRefreshViewController.h */,
 				9FB7EB9F1DD186C800B6AACD /* WithRefreshViewController.m */,
+				9F476EA01E0D0979002125E1 /* TittleViewController.h */,
+				9F476EA11E0D0979002125E1 /* TittleViewController.m */,
+				9FC482E51E10B79000979AB4 /* InScrollViewViewController.h */,
+				9FC482E61E10B79000979AB4 /* InScrollViewViewController.m */,
 			);
 			name = Father;
 			sourceTree = "<group>";
@@ -152,6 +176,13 @@
 				9F7DBD6D1DD06AA100A510B8 /* ViewController_Son2.m */,
 				9F7DBD741DD0781000A510B8 /* ViewController_Son3.h */,
 				9F7DBD751DD0781000A510B8 /* ViewController_Son3.m */,
+				9FC482E21E10B71100979AB4 /* ViewController_Son4.h */,
+				9FC482E31E10B71100979AB4 /* ViewController_Son4.m */,
+				9F2073861E13F36700DA0ECB /* ViewController_Son5.h */,
+				9F2073871E13F36700DA0ECB /* ViewController_Son5.m */,
+				9FC482DA1E109DF700979AB4 /* ViewController_GrandSon1.h */,
+				9FC482DB1E109DF700979AB4 /* ViewController_GrandSon1.m */,
+				9FC482DC1E109DF700979AB4 /* ViewController_GrandSon1.xib */,
 			);
 			name = Sons;
 			sourceTree = "<group>";
@@ -185,6 +216,8 @@
 				9F7DBD5E1DD0647700A510B8 /* MainViewController.m */,
 				9F7DBD5F1DD0647700A510B8 /* MainViewController.xib */,
 				9FA68A111DD05D55005471A7 /* Supporting Files */,
+				9FC482F11E1107D300979AB4 /* BaseScrollView.h */,
+				9FC482F21E1107D300979AB4 /* BaseScrollView.m */,
 			);
 			path = CFSegmentViewDemo;
 			sourceTree = "<group>";
@@ -356,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FA68A211DD05D55005471A7 /* LaunchScreen.storyboard in Resources */,
+				9FC482DE1E109DF700979AB4 /* ViewController_GrandSon1.xib in Resources */,
 				9FA68A1E1DD05D55005471A7 /* Assets.xcassets in Resources */,
 				9FB7EC0A1DD1C31C00B6AACD /* MJRefresh.bundle in Resources */,
 				9F7DBD661DD0668F00A510B8 /* NormalViewController.xib in Resources */,
@@ -378,22 +412,28 @@
 				9F7DBD651DD0668F00A510B8 /* NormalViewController.m in Sources */,
 				9FA68A161DD05D55005471A7 /* AppDelegate.m in Sources */,
 				9FB7EC0D1DD1C31C00B6AACD /* UIScrollView+MJRefresh.m in Sources */,
+				9FC482F31E1107D300979AB4 /* BaseScrollView.m in Sources */,
 				9F7DBD5A1DD05DDD00A510B8 /* CFSegumentView.m in Sources */,
+				9F2073881E13F36700DA0ECB /* ViewController_Son5.m in Sources */,
 				9FB7EC051DD1C31C00B6AACD /* MJRefreshBackNormalFooter.m in Sources */,
 				9F7DBD601DD0647700A510B8 /* MainViewController.m in Sources */,
 				9FB7EC081DD1C31C00B6AACD /* MJRefreshNormalHeader.m in Sources */,
 				9FB7EC021DD1C31C00B6AACD /* MJRefreshAutoNormalFooter.m in Sources */,
 				9FB7EBFD1DD1C31C00B6AACD /* MJRefreshBackFooter.m in Sources */,
 				9FB7EC031DD1C31C00B6AACD /* MJRefreshAutoStateFooter.m in Sources */,
+				9F476EA21E0D0979002125E1 /* TittleViewController.m in Sources */,
 				9FB7EC071DD1C31C00B6AACD /* MJRefreshGifHeader.m in Sources */,
 				9FB7EC011DD1C31C00B6AACD /* MJRefreshAutoGifFooter.m in Sources */,
 				9FB7EC0C1DD1C31C00B6AACD /* UIScrollView+MJExtension.m in Sources */,
 				9FA68A131DD05D55005471A7 /* main.m in Sources */,
+				9FC482E41E10B71100979AB4 /* ViewController_Son4.m in Sources */,
 				9FB7EC041DD1C31C00B6AACD /* MJRefreshBackGifFooter.m in Sources */,
 				9FB7EBFE1DD1C31C00B6AACD /* MJRefreshComponent.m in Sources */,
 				9F7DBD6E1DD06AA100A510B8 /* ViewController_Son2.m in Sources */,
+				9FC482E71E10B79000979AB4 /* InScrollViewViewController.m in Sources */,
 				9FB7EC001DD1C31C00B6AACD /* MJRefreshHeader.m in Sources */,
 				9FB7EBA31DD18EF000B6AACD /* UIViewController+BaseExtension.m in Sources */,
+				9FC482DD1E109DF700979AB4 /* ViewController_GrandSon1.m in Sources */,
 				9FB7EBA01DD186C800B6AACD /* WithRefreshViewController.m in Sources */,
 				9FB7EBFC1DD1C31C00B6AACD /* MJRefreshAutoFooter.m in Sources */,
 				9FB7EBFF1DD1C31C00B6AACD /* MJRefreshFooter.m in Sources */,

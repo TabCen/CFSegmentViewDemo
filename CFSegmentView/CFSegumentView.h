@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)CFSegumentView:(CFSegumentView *)segumetView currentIndex:(NSString *)currentIndex;
 
--(void)CFSegumentView:(CFSegumentView *)segumetView currentViewController:(UITableViewController *)tableVC;
+-(void)CFSegumentView:(CFSegumentView *)segumetView curTableVC_willDisplay:(UITableViewController *)tableVC;
+
+-(void)CFSegumentView:(CFSegumentView *)segumetView curVC_willDisplay:(UIViewController *)vc;
 
 @end
 
@@ -37,7 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,copy) NSArray<Class>            *tableClasses;
 
-@property(nonatomic,weak)UIViewController           *selfViewController;
+/**
+ 当前控件加载在哪个控制器中，用于点击进入下一个页面
+ */
+@property(nonatomic,weak)UIViewController           *rootViewController;
 
 @property(nonatomic)CGFloat                         tittleViewHeight;
 
@@ -50,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic)BOOL                            showTittleScrollIndicator;          //default NO
 
 @property(nonatomic)BOOL                            tittleBig;                          //按钮选中后字体是否变大，default YES
+
+@property(nonatomic,strong)UIView                   *tittleView;
 
 /**
  *  首次选中者
@@ -79,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithoutTittleViewWithFrame:(CGRect)frame;
 
 /**
- *  对相应的tableViewController进行刷新
+ *  如果当前页面的控制器是tableViewController，则对此tableView执行刷新刷新
  */
 -(void)tableViewRefresh;
 
