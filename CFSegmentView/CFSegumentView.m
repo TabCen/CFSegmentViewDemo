@@ -507,18 +507,18 @@ NS_ASSUME_NONNULL_END
     }
 }
 
--(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-    UIView *hitTestView = [super hitTest:point withEvent:event];
-    if (self.tableView) {
-        if (self.tableView.contentOffset.y<=0) {
-            return _tableView.superview;
-        }else{
-            return _tableView;
-        }
-    }
-    else
-        return hitTestView;
-}
+//-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+//    UIView *hitTestView = [super hitTest:point withEvent:event];
+//    if (self.tableView) {
+//        if (self.tableView.contentOffset.y<=0) {
+//            return _tableView.superview;
+//        }else{
+//            return _tableView;
+//        }
+//    }
+//    else
+//        return hitTestView;
+//}
 
 
 @end
