@@ -11,6 +11,8 @@
 #import "WithRefreshViewController.h"
 #import "TittleViewController.h"
 #import "InScrollViewViewController.h"
+#import "HomeSelectViewController.h"
+
 
 static NSString *const ID_TableViewCell=@"ID_TableViewCell";
 
@@ -30,6 +32,7 @@ static NSString *const ID_TableViewCell=@"ID_TableViewCell";
                         @"滑动自动刷新",
                         @"标题独立设置（导航栏）",
                         @"选择器在UIScrollView中，控制事件传递",
+                        @"房产选择类似",
                        ];
     
     self.navigationItem.title=@"选择器";
@@ -86,6 +89,11 @@ static NSString *const ID_TableViewCell=@"ID_TableViewCell";
             InScrollViewViewController *inScrollVC = [[InScrollViewViewController alloc]init];
             [self.navigationController pushViewController:inScrollVC animated:YES];
         }break;
+        case 4:{
+            HomeSelectViewController *selectVC = [[HomeSelectViewController alloc]init];
+            [self.navigationController pushViewController:selectVC animated:YES];
+        }break;
+            
         default:
             break;
     }
